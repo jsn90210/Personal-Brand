@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jason Askar | Digital Marketing Specialist som söker LIA i Göteborg</title>
+    <meta name="description" content="Jason Askar studerar till Digital Marketing Specialist på IHM Business School och söker LIA inom digital marknadsföring i Göteborg våren 2027.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400&family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Säger till CSS:en att JavaScript fungerar, så att animationerna kan starta dolda -->
+    <script>document.documentElement.classList.add("js");</script>
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <!-- Färgsvepet som täcker skärmen vid övergångar -->
+    <div class="wipe" aria-hidden="true">
+        <div class="wipe__panel wipe__panel--clay"></div>
+        <div class="wipe__panel wipe__panel--ink">
+            <span class="wipe__label">Jason Askar</span>
+        </div>
+    </div>
+
+    <header class="sidhuvud" id="top">
+        <div>
+            <h1>Jason Askar</h1>
+            <p class="roll">Digital Marketing Specialist</p>
+        </div>
+        <nav class="meny" aria-label="Huvudmeny">
+            <ul>
+                <li><a href="#om">Om mig</a></li>
+                <li><a href="#tjanster">Vad jag gör</a></li>
+                <li><a href="#projekt">Projekt</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+            <button id="tema" type="button" hidden>Mörkt läge</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="intro" aria-label="Introduktion">
+            <div class="wrap">
+                <h2>
+                    <span class="rad"><span style="--i:0">Först marknadsför</span></span>
+                    <span class="rad"><span style="--i:1">jag <em>mig själv</em>.</span></span>
+                    <span class="rad"><span style="--i:2">Sen er.</span></span>
+                </h2>
+
+                <div class="intro__under">
+                    <div data-reveal style="--delay:1.1s">
+                        <p class="ingress">Den här sidan är mitt första bevis: mitt eget varumärke, från idé till färdig sida. Jag studerar till Digital Marketing Specialist och söker en LIA plats där jag får göra samma sak för er, med riktiga mål och riktiga siffror.</p>
+                        <div class="knappar">
+                            <a class="knapp" href="#kontakt" data-titel="Kontakt">Prata LIA med mig <span class="pil" aria-hidden="true">→</span></a>
+                            <a class="knapp knapp--ljus" href="#om" data-titel="Om mig">Läs mer om mig</a>
+                        </div>
+                    </div>
+
+                    <ul class="just-nu" data-reveal style="--delay:1.25s">
+                        <li><span>Utbildning</span>Digital Marketing Specialist, IHM Business School</li>
+                        <li>Söker en LIA plats · VT27</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dekorativt rullband, därför dolt för skärmläsare -->
+        <div class="rullband" aria-hidden="true">
+            <div class="rullband__spar">
+                <span>Sociala medier</span><span>content</span><span>Meta Ads</span><span>målgrupp</span><span>Kommunikation</span><span>samarbete</span>
+                <span>Sociala medier</span><span>content</span><span>Meta Ads</span><span>målgrupp</span><span>Kommunikation</span><span>samarbete</span>
+            </div>
+        </div>
+
+        <section id="om" tabindex="-1">
+            <div class="wrap om">
+                <figure class="om__bild" data-reveal="bild">
+                    <img src="img/profil.jpg" alt="Jason Askar i brun tröja utomhus bland palmer, ler mot kameran" width="400" height="400">
+                </figure>
+
+                <div class="om__text">
+                    <span class="etikett">Om mig</span>
+                    <h2 class="sektionstopp">
+                        <span class="rad"><span style="--i:0">Jag lyssnar</span></span>
+                        <span class="rad"><span style="--i:1">innan jag</span></span>
+                        <span class="rad"><span style="--i:2"><em>postar</em>.</span></span>
+                    </h2>
+                    <div data-reveal>
+                        <p>Jag är lyhörd, social och trygg i mötet med människor. Jag ställer frågor tills jag förstår vem budskapet är till för, och först då börjar jag skapa.</p>
+                        <p>Jag har stått bakom baren på Liseberg och jobbat som säkerhetspersonal, jobb där man lär sig läsa av människor snabbt och leverera när det är fullt. Marknadsföring har jag lärt mig på egen hand genom att testa i flera år. Nu läser jag till Digital Marketing Specialist på IHM Business School för att lägga strategi och data på det jag redan kan.</p>
+                        <ul class="egenskaper" aria-label="Egenskaper">
+                            <li>Lyhörd</li>
+                            <li>Kundkommunikation</li>
+                            <li>Lead management</li>
+                            <li>Content</li>
+                            <li>Ställer frågor</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tjanster" tabindex="-1">
+            <div class="wrap">
+                <span class="etikett">Vad jag gör</span>
+                <h2 class="sektionstopp">
+                    <span class="rad"><span style="--i:0">Det här får</span></span>
+                    <span class="rad"><span style="--i:1">du med <em>mig</em>.</span></span>
+                </h2>
+                <ul class="rutnat">
+                    <li class="kort" data-reveal>
+                        <span class="kort__nr">01</span>
+                        <h3>Sociala medier och content</h3>
+                        <p>Innehåll som planeras utifrån målgruppen, inte magkänslan. Jag testar och justerar tills det fungerar.</p>
+                    </li>
+                    <li class="kort" data-reveal style="--delay:0.1s">
+                        <span class="kort__nr">02</span>
+                        <h3>Digital annonsering</h3>
+                        <p>Kampanjer i Meta Ads med ett tydligt mål och siffror som följs upp, hela vägen till uppföljning av leads.</p>
+                    </li>
+                    <li class="kort" data-reveal style="--delay:0.2s">
+                        <span class="kort__nr">03</span>
+                        <h3>Målgrupp och kommunikation</h3>
+                        <p>Jag ställer frågorna först. Bakom varje inlägg som fungerar finns någon som förstod vem det var till för.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projekt" tabindex="-1">
+            <div class="wrap">
+                <span class="etikett">Projekt</span>
+                <h2 class="sektionstopp">
+                    <span class="rad"><span style="--i:0">Det jag</span></span>
+                    <span class="rad"><span style="--i:1">bygger <em>nu</em>.</span></span>
+                </h2>
+                <!-- Fler projekt läggs till senare. Lägg då alla <article> i en
+                     <div class="rutnat"> så hamnar de i ett rutnät. -->
+                <article class="projekt projekt--stor" data-reveal>
+                    <div class="projekt__bild">
+                        <img src="img/projekt-webbplats.jpg" alt="Startsidan på Jasons personliga webbplats med stor rubrik i jordiga färger" width="800" height="600" loading="lazy">
+                    </div>
+                    <div class="projekt__text">
+                        <h3>Min personliga webbplats</h3>
+                        <p>Sidan du läser just nu. Ett pågående kursprojekt där jag bygger mitt eget varumärke med HTML, CSS och JavaScript. Fler projekt kommer under året.</p>
+                        <ul class="taggar" aria-label="Verktyg">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Pågående</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="kontakt" class="kontakt" tabindex="-1">
+            <div class="wrap">
+                <span class="etikett">Kontakt</span>
+                <h2 class="sektionstopp">
+                    <span class="rad"><span style="--i:0">Låt oss prata</span></span>
+                    <span class="rad"><span style="--i:1"><em>LIA</em>.</span></span>
+                </h2>
+                <p data-reveal>Har du en LIA plats våren 2027? Skicka ett mejl eller hör av dig på LinkedIn. Jag svarar inom ett dygn.</p>
+                <div class="knappar" data-reveal style="--delay:0.1s">
+                    <a class="knapp" href="mailto:contact@jason-askar.com">Mejl <span class="pil" aria-hidden="true">→</span></a>
+                    <a class="knapp" href="https://www.linkedin.com/in/jason-askar/" target="_blank" rel="noopener">LinkedIn <span class="pil" aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="sidfot">
+        <div class="wrap">
+            <p>© 2026 Jason Askar</p>
+        </div>
+    </footer>
+</body>
+
+</html>
