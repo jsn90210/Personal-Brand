@@ -639,6 +639,122 @@ a:hover .pil {
 }
 
 
+/* Kontaktformuläret (ligger på den mörka kontaktytan) */
+.formular {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 44rem;
+    margin-top: clamp(2rem, 5vw, 3rem);
+}
+
+.falt {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.falt label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--dark-soft);
+}
+
+.valfritt {
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.falt input,
+.falt textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--dark-soft);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--dark-text);
+    font: inherit;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.falt textarea {
+    resize: vertical;
+    min-height: 7rem;
+}
+
+.falt input:focus-visible,
+.falt textarea:focus-visible {
+    outline: 3px solid var(--dark-soft);
+    outline-offset: 2px;
+    border-color: var(--dark-text);
+}
+
+/* Fältet markeras när det är fel ifyllt */
+.falt [aria-invalid="true"] {
+    border-color: #F0A07A;
+    border-width: 2px;
+}
+
+/* Spamfällan göms utanför skärmen */
+.falla {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.integritet {
+    max-width: 65ch;
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--dark-soft);
+}
+
+.integritet strong {
+    color: var(--dark-text);
+}
+
+.formular .knapp {
+    justify-self: start;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+.formular .knapp:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.formstatus {
+    min-height: 1.5em;
+    margin: 0;
+    font-weight: 600;
+}
+
+.direkt {
+    margin: clamp(2.5rem, 6vw, 4rem) 0 0;
+    color: var(--dark-soft);
+}
+
+.kontakt .knappar {
+    margin-top: 1rem;
+}
+
+/* Kantknapp: genomskinlig med ljus kant, så formulärets Skicka blir huvudknappen */
+.kontakt .knapp--kontur {
+    background: transparent;
+    color: var(--dark-text);
+}
+
+.kontakt .knapp--kontur:hover {
+    background: var(--dark-text);
+    color: var(--dark-bg);
+}
+
 .sidfot {
     padding: 2rem 0;
     background: var(--dark-bg);

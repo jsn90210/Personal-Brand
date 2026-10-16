@@ -118,3 +118,90 @@ const observator = new IntersectionObserver(function (poster) {
 saker.forEach(function (sak) {
     observator.observe(sak);
 });
+
+
+/* =========================================================
+   4 · Kontaktformuläret – skickar svaren till HubSpot
+   =========================================================
+   Formuläret är byggt i sajtens egen HTML så att det ser ut
+   som resten av sidan. När man trycker på Skicka skickas
+   svaren till HubSpots API, och personen sparas som en
+   kontakt i HubSpot. */
+
+const formular = document.querySelector("#kontaktform");
+const formStatus = document.querySelector("#formstatus");
+
+// Adressen till HubSpots API: konto-ID och formulär-ID kommer från HubSpot
+const hubspotAdress = "https://api-eu1.hsforms.com/submissions/v3/integration/submit/149563971/24a24a49-7dd1-461f-a062-9902e8b3d5ae";
+
+// Kollar att de obligatoriska fälten är rätt ifyllda
+function kollaFalt() {
+    let alltOk = true;
+    const falt = formular.querySelectorAll("input[required]");
+
+    falt.forEach(function (ruta) {
+        if (ruta.checkValidity()) {
+            ruta.removeAttribute("aria-invalid");
+        } else {
+            ruta.setAttribute("aria-invalid", "true");
+            alltOk = false;
+        }
+    });
+
+    return alltOk;
+}
+
+async function skickaFormular(event) {
+    event.preventDefault(); // stoppa webbläsarens vanliga sidomladdning
+
+    // Spamfällan: om det dolda fältet är ifyllt är det en robot
+    if (formular.webbplats.value !== "") {
+        return;
+    }
+
+    if (kollaFalt() === false) {
+        formStatus.textContent = "Fyll i namn, mejladress och företag innan du skickar.";
+        return;
+    }
+
+    const knapp = formular.querySelector("button");
+    knapp.disabled = true;
+    formStatus.textContent = "Skickar …";
+
+    // Svaren paketeras på det sätt som HubSpot vill ha dem
+    const data = {
+        fields: [
+            { name: "firstname", value: formular.firstname.value.trim() },
+            { name: "email", value: formular.email.value.trim() },
+            { name: "company", value: formular.company.value.trim() },
+            { name: "message", value: formular.message.value.trim() }
+        ],
+        context: {
+            pageUri: window.location.href,
+            pageName: document.title
+        }
+    };
+
+    try {
+        const svar = await fetch(hubspotAdress, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+        });
+
+        if (svar.ok) {
+            formular.reset();
+            formStatus.textContent = "Tack! Jag hör av mig inom ett dygn.";
+        } else {
+            formStatus.textContent = "Något gick fel. Prova igen eller mejla mig direkt.";
+        }
+    } catch (fel) {
+        formStatus.textContent = "Något gick fel. Prova igen eller mejla mig direkt.";
+    }
+
+    knapp.disabled = false;
+}
+
+if (formular !== null) {
+    formular.addEventListener("submit", skickaFormular);
+}

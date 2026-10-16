@@ -174,10 +174,46 @@
                     <span class="rad"><span style="--i:0">Låt oss prata</span></span>
                     <span class="rad"><span style="--i:1"><em>LIA</em>.</span></span>
                 </h2>
-                <p data-reveal>Har du en LIA plats våren 2027? Skicka ett mejl eller hör av dig på LinkedIn. Jag svarar inom ett dygn.</p>
-                <div class="knappar" data-reveal style="--delay:0.1s">
-                    <a class="knapp" href="mailto:contact@jason-askar.com">Mejl <span class="pil" aria-hidden="true">→</span></a>
-                    <a class="knapp" href="https://www.linkedin.com/in/jason-askar/" target="_blank" rel="noopener">LinkedIn <span class="pil" aria-hidden="true">↗</span></a>
+                <p data-reveal>Har du en LIA plats våren 2027? Fyll i formuläret så hör jag av mig inom ett dygn.</p>
+
+                <!-- Kontaktformulär: svaren skickas till HubSpot via deras API (se script.js, del 4) -->
+                <form id="kontaktform" class="formular" data-reveal style="--delay:0.1s" novalidate>
+                    <div class="falt">
+                        <label for="namn">Namn</label>
+                        <input id="namn" name="firstname" type="text" autocomplete="name" required>
+                    </div>
+                    <div class="falt">
+                        <label for="mejl">Mejladress</label>
+                        <input id="mejl" name="email" type="email" autocomplete="email" required>
+                    </div>
+                    <div class="falt">
+                        <label for="foretag">Företag</label>
+                        <input id="foretag" name="company" type="text" autocomplete="organization" required>
+                    </div>
+                    <div class="falt">
+                        <label for="meddelande">Meddelande <span class="valfritt">(valfritt)</span></label>
+                        <textarea id="meddelande" name="message" rows="4"></textarea>
+                    </div>
+
+                    <!-- Fälla för spamrobotar: osynlig för människor, så om den är ifylld är det en robot -->
+                    <div class="falla" aria-hidden="true">
+                        <label for="webbplats">Lämna tomt</label>
+                        <input id="webbplats" name="webbplats" type="text" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <p class="integritet">
+                        <strong>Så behandlar jag dina personuppgifter.</strong>
+                        Jason Askar är personuppgiftsansvarig för de uppgifter du lämnar i formuläret. Jag behandlar ditt namn, företag, din mejladress och ditt meddelande för att kunna besvara din förfrågan. Den rättsliga grunden är mitt berättigade intresse av att svara dig. Uppgifterna lagras i CRM systemet HubSpot och raderas senast 12 månader efter vår senaste kontakt. Du har rätt att begära tillgång till, rättelse av eller radering av dina uppgifter genom att mejla <a href="mailto:contact@jason-askar.com">contact@jason-askar.com</a>. Du har även rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY).
+                    </p>
+
+                    <button class="knapp" type="submit">Skicka <span class="pil" aria-hidden="true">→</span></button>
+                    <p class="formstatus" id="formstatus" role="status" aria-live="polite"></p>
+                </form>
+
+                <p class="direkt" data-reveal>Hellre direkt?</p>
+                <div class="knappar" data-reveal>
+                    <a class="knapp knapp--kontur" href="mailto:contact@jason-askar.com">Mejl <span class="pil" aria-hidden="true">→</span></a>
+                    <a class="knapp knapp--kontur" href="https://www.linkedin.com/in/jason-askar/" target="_blank" rel="noopener">LinkedIn <span class="pil" aria-hidden="true">↗</span></a>
                 </div>
             </div>
         </section>
