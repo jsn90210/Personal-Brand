@@ -34,6 +34,7 @@ const minskaRorelse = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 function sidanLaddad() {
     document.body.classList.add("wipe-ut");
     document.body.classList.add("intro-klar");
+    document.documentElement.classList.add("klar");
 }
 
 requestAnimationFrame(sidanLaddad);
@@ -51,7 +52,7 @@ function spelaRubrik(sektion) {
     rubrik.classList.remove("aterstall");
     setTimeout(function () {
         rubrik.classList.add("syns");
-    }, 450);
+    }, 200);
 }
 
 // Körs när man klickar på en länk som går till en sektion (#om, #projekt …)
@@ -89,7 +90,7 @@ function gaTillSektion(event) {
         document.body.classList.remove("wipe-in");
         document.body.classList.add("wipe-ut");
         spelaRubrik(mal);
-    }, 950);
+    }, 520);
 }
 
 const sektionsLankar = document.querySelectorAll('a[href^="#"]');
@@ -113,7 +114,7 @@ const observator = new IntersectionObserver(function (poster) {
             observator.unobserve(post.target); // animera bara en gång
         }
     });
-}, { threshold: 0.15 });
+}, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
 
 saker.forEach(function (sak) {
     observator.observe(sak);
