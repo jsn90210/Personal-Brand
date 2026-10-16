@@ -139,6 +139,7 @@ const hubspotAdress = "https://api-eu1.hsforms.com/submissions/v3/integration/su
 function visaLyckades() {
     formStatus.className = "formstatus lyckades";
     formStatus.textContent = "Tack! Ditt meddelande har skickats. Jag hör av mig inom ett dygn.";
+    berattaForGTM("formular_skickat"); // räknas i Google Analytics
 }
 
 // Visar tydligt att något gick fel, och ger en annan väg att nå mig
@@ -230,3 +231,31 @@ if (formular !== null) {
         }
     });
 }
+
+
+
+/* =========================================================
+   5 · Mätning – berättar för Google Tag Manager vad besökaren gör
+   =========================================================
+   Sajten lägger en "händelse" i dataLayer. Tag Manager plockar
+   upp den och skickar den till Google Analytics, men bara om
+   besökaren har sagt ja till statistik i cookie-bannern. */
+
+function berattaForGTM(handelse) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: handelse });
+}
+
+// Klick på någon av mejl-länkarna
+document.querySelectorAll('a[href^="mailto:"]').forEach(function (lank) {
+    lank.addEventListener("click", function () {
+        berattaForGTM("mejl_klick");
+    });
+});
+
+// Klick på LinkedIn-länken
+document.querySelectorAll('a[href*="linkedin.com"]').forEach(function (lank) {
+    lank.addEventListener("click", function () {
+        berattaForGTM("linkedin_klick");
+    });
+});
