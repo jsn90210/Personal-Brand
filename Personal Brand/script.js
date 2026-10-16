@@ -135,6 +135,18 @@ const formStatus = document.querySelector("#formstatus");
 // Adressen till HubSpots API: konto-ID och formulär-ID kommer från HubSpot
 const hubspotAdress = "https://api-eu1.hsforms.com/submissions/v3/integration/submit/149563971/24a24a49-7dd1-461f-a062-9902e8b3d5ae";
 
+// Visar tydligt att meddelandet kom fram
+function visaLyckades() {
+    formStatus.className = "formstatus lyckades";
+    formStatus.textContent = "Tack! Ditt meddelande har skickats. Jag hör av mig inom ett dygn.";
+}
+
+// Visar tydligt att något gick fel, och ger en annan väg att nå mig
+function visaMisslyckades() {
+    formStatus.className = "formstatus misslyckades";
+    formStatus.innerHTML = 'Meddelandet kunde inte skickas. Mejla mig i stället på <a href="mailto:kontakt@jason-askar.com">kontakt@jason-askar.com</a>.';
+}
+
 // Kollar att de obligatoriska fälten är rätt ifyllda
 function kollaFalt() {
     let alltOk = true;
@@ -160,8 +172,11 @@ async function skickaFormular(event) {
         return;
     }
 
+    formStatus.className = "formstatus";
+
     if (kollaFalt() === false) {
-        formStatus.textContent = "Fyll i namn, mejladress och företag innan du skickar.";
+        formStatus.textContent = "Något saknas. Titta på fälten som är markerade.";
+        formular.querySelector('[aria-invalid="true"]').focus(); // hoppa till första felet
         return;
     }
 
@@ -192,12 +207,13 @@ async function skickaFormular(event) {
 
         if (svar.ok) {
             formular.reset();
-            formStatus.textContent = "Tack! Jag hör av mig inom ett dygn.";
+            visaLyckades();
         } else {
-            formStatus.textContent = "Något gick fel. Prova igen eller mejla mig direkt.";
+            visaMisslyckades();
         }
     } catch (fel) {
-        formStatus.textContent = "Något gick fel. Prova igen eller mejla mig direkt.";
+        // Hit kommer man t.ex. om en annonsblockerare stoppar anropet till HubSpot
+        visaMisslyckades();
     }
 
     knapp.disabled = false;
@@ -205,4 +221,12 @@ async function skickaFormular(event) {
 
 if (formular !== null) {
     formular.addEventListener("submit", skickaFormular);
+
+    // Ta bort felmarkeringen så fort fältet blir rätt ifyllt
+    formular.addEventListener("input", function (event) {
+        const ruta = event.target;
+        if (ruta.hasAttribute("aria-invalid") && ruta.checkValidity()) {
+            ruta.removeAttribute("aria-invalid");
+        }
+    });
 }

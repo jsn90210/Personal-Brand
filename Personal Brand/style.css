@@ -172,11 +172,6 @@ p {
    när man klickar i menyn glider de förbi, ungefär som ett
    sidbyte. Visas bara när JavaScript är igång. */
 .wipe {
-    display: none;
-}
-
-.js .wipe {
-    display: block;
     position: fixed;
     inset: 0;
     z-index: 100;
@@ -567,6 +562,78 @@ a:hover .pil {
     color: var(--text-soft);
 }
 
+/* Utbildning: kurserna grupperade i fyra kort */
+.statusforklaring {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin: 0 0 clamp(1.5rem, 4vw, 2.5rem);
+    font-size: 0.95rem;
+    color: var(--text-soft);
+}
+
+.statusforklaring .par {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+
+.kurser h3 {
+    margin-bottom: 1.25rem;
+}
+
+.kurslista {
+    display: grid;
+    gap: 1.1rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.kurslista li {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.kurslista strong {
+    font-weight: 600;
+    line-height: 1.35;
+}
+
+.kurs__text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--text-soft);
+}
+
+/* Små etiketter som visar om kursen är klar, pågår eller kommer */
+.status {
+    justify-self: start;
+    padding: 0.1rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.status--klar {
+    background: var(--green);
+    color: var(--bg);
+}
+
+.status--pagar {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+.status--kommer {
+    border: 1px solid var(--line);
+    color: var(--text-soft);
+}
+
 /* 10 · Projekt ------------------------------------------ */
 .projekt__bild {
     overflow: hidden;
@@ -702,6 +769,56 @@ a:hover .pil {
     border-width: 2px;
 }
 
+/* Stjärnan som visar att ett fält måste fyllas i */
+.stjarna {
+    color: #F0A07A;
+    font-weight: 700;
+}
+
+.forklaring {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--dark-text);
+}
+
+/* Felmeddelandet under ett fält syns bara när fältet är fel ifyllt */
+.faltfel {
+    display: none;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #F0A07A;
+}
+
+.falt [aria-invalid="true"] + .faltfel {
+    display: block;
+}
+
+.falt input::placeholder {
+    color: var(--dark-text);
+    opacity: 0.45;
+}
+
+/* Tydliga lägen för meddelandet efter Skicka */
+.formstatus.lyckades,
+.formstatus.misslyckades {
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+}
+
+.formstatus.lyckades {
+    background: var(--dark-text);
+    color: var(--dark-bg);
+}
+
+.formstatus.misslyckades {
+    border: 2px solid #F0A07A;
+}
+
+.formstatus a {
+    color: inherit;
+}
+
 /* Spamfällan göms utanför skärmen */
 .falla {
     position: absolute;
@@ -721,6 +838,12 @@ a:hover .pil {
 
 .integritet strong {
     color: var(--dark-text);
+}
+
+.integritet .smatt {
+    display: block;
+    margin-top: 0.4rem;
+    opacity: 0.8;
 }
 
 .formular .knapp {

@@ -17,11 +17,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Typsnitten laddas utan att stoppa sidan (media="print" byts till "all" när filen är klar) -->
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400&family=Inter:wght@400;500;600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <!-- Mörk bakgrund direkt, innan stilmallen hunnit laddas, så skärmen inte blinkar vitt -->
-    <style>html{background:#411900}</style>
+    <!-- Det allra viktigaste ligger direkt här i HTML:en, så att det bruna svepet syns
+         från första bildrutan och skärmen aldrig hinner blinka -->
+    <style>
+        html{background:#411900}
+        .wipe{position:fixed;inset:0;z-index:100;pointer-events:none}
+        .wipe__panel{position:absolute;inset:0}
+        .wipe__panel--clay{background:#9A4521}
+        .wipe__panel--ink{display:grid;place-items:center;background:#411900}
+    </style>
+    <noscript><style>.wipe{display:none}html{background:#F3EBE1}</style></noscript>
     <link rel="stylesheet" href="style.css">
     <!-- Säger till CSS:en att JavaScript fungerar, så att animationerna kan starta dolda -->
-    <script>document.documentElement.classList.add("js");</script>
+    <script>
+        document.documentElement.classList.add("js");
+        // Säkerhetsspärr: om något krånglar tas svepet bort efter 3 sekunder ändå
+        setTimeout(function () { document.body.classList.add("wipe-ut"); document.documentElement.classList.add("klar"); }, 3000);
+    </script>
     <script defer src="script.js"></script>
 </head>
 
@@ -46,7 +58,8 @@
         <nav class="meny" aria-label="Huvudmeny">
             <ul>
                 <li><a href="#om">Om mig</a></li>
-                <li><a href="#tjanster">Vad jag gör</a></li>
+                <li><a href="#tjanster">Vad jag kan</a></li>
+                <li><a href="#utbildning">Utbildning</a></li>
                 <li><a href="#projekt">Projekt</a></li>
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
@@ -65,16 +78,16 @@
 
                 <div class="intro__under">
                     <div data-reveal style="--delay:0.5s">
-                        <p class="ingress">Den här sidan är mitt första bevis: mitt eget varumärke, från idé till färdig sida. Jag studerar till Digital Marketing Specialist och söker en LIA plats där jag får göra samma sak för er, med riktiga mål och riktiga siffror.</p>
+                        <p class="ingress">Jag heter Jason. Jag pluggar marknadsföring och söker en LIA plats i Göteborg våren 2027. Den här sidan är mitt första projekt.</p>
                         <div class="knappar">
-                            <a class="knapp" href="#kontakt" data-titel="Kontakt">Prata LIA med mig <span class="pil" aria-hidden="true">→</span></a>
+                            <a class="knapp" href="#kontakt" data-titel="Kontakt">Kontakta mig <span class="pil" aria-hidden="true">→</span></a>
                             <a class="knapp knapp--ljus" href="#om" data-titel="Om mig">Läs mer om mig</a>
                         </div>
                     </div>
 
                     <ul class="just-nu" data-reveal style="--delay:0.6s">
                         <li><span>Utbildning</span>Digital Marketing Specialist, IHM Business School</li>
-                        <li>Söker en LIA plats · VT27</li>
+                        <li><span>Söker</span>LIA plats i Göteborg, våren 2027</li>
                     </ul>
                 </div>
             </div>
@@ -83,8 +96,8 @@
         <!-- Dekorativt rullband, därför dolt för skärmläsare -->
         <div class="rullband" aria-hidden="true">
             <div class="rullband__spar">
-                <span>Sociala medier</span><span>content</span><span>Meta Ads</span><span>målgrupp</span><span>Kommunikation</span><span>samarbete</span>
-                <span>Sociala medier</span><span>content</span><span>Meta Ads</span><span>målgrupp</span><span>Kommunikation</span><span>samarbete</span>
+                <span>Sociala medier</span><span>innehåll</span><span>annonser</span><span>målgrupp</span><span>Kommunikation</span><span>samarbete</span>
+                <span>Sociala medier</span><span>innehåll</span><span>annonser</span><span>målgrupp</span><span>Kommunikation</span><span>samarbete</span>
             </div>
         </div>
 
@@ -102,13 +115,14 @@
                         <span class="rad"><span style="--i:2"><em>postar</em>.</span></span>
                     </h2>
                     <div data-reveal>
-                        <p>Jag är lyhörd, social och trygg i mötet med människor. Jag ställer frågor tills jag förstår vem budskapet är till för, och först då börjar jag skapa.</p>
-                        <p>Jag har stått bakom baren på Liseberg och jobbat som säkerhetspersonal, jobb där man lär sig läsa av människor snabbt och leverera när det är fullt. Marknadsföring har jag lärt mig på egen hand genom att testa i flera år. Nu läser jag till Digital Marketing Specialist på IHM Business School för att lägga strategi och data på det jag redan kan.</p>
+                        <p>Jag gillar människor. Jag lyssnar och ställer frågor innan jag skapar något.</p>
+                        <p>Jag har jobbat i bar på Liseberg och som säkerhetsvakt. Där lärde jag mig att läsa av människor snabbt och hålla lugnet när det är mycket att göra.</p>
+                        <p>Marknadsföring har jag testat på egen hand i flera år. Nu pluggar jag till Digital Marketing Specialist på IHM Business School.</p>
                         <ul class="egenskaper" aria-label="Egenskaper">
                             <li>Lyhörd</li>
-                            <li>Kundkommunikation</li>
-                            <li>Lead management</li>
-                            <li>Content</li>
+                            <li>Bra på att prata med kunder</li>
+                            <li>Följer upp</li>
+                            <li>Skapar innehåll</li>
                             <li>Ställer frågor</li>
                         </ul>
                     </div>
@@ -118,26 +132,139 @@
 
         <section id="tjanster" tabindex="-1">
             <div class="wrap">
-                <span class="etikett">Vad jag gör</span>
+                <span class="etikett">Vad jag kan</span>
                 <h2 class="sektionstopp">
-                    <span class="rad"><span style="--i:0">Det här får</span></span>
-                    <span class="rad"><span style="--i:1">du med <em>mig</em>.</span></span>
+                    <span class="rad"><span style="--i:0">Det här kan jag</span></span>
+                    <span class="rad"><span style="--i:1"><em>hjälpa till</em> med.</span></span>
                 </h2>
                 <ul class="rutnat">
                     <li class="kort" data-reveal>
                         <span class="kort__nr">01</span>
-                        <h3>Sociala medier och content</h3>
-                        <p>Innehåll som planeras utifrån målgruppen, inte magkänslan. Jag testar och justerar tills det fungerar.</p>
+                        <h3>Sociala medier</h3>
+                        <p>Jag planerar och skapar inlägg som passar de som ska se dem.</p>
                     </li>
                     <li class="kort" data-reveal style="--delay:0.1s">
                         <span class="kort__nr">02</span>
-                        <h3>Digital annonsering</h3>
-                        <p>Kampanjer i Meta Ads med ett tydligt mål och siffror som följs upp, hela vägen till uppföljning av leads.</p>
+                        <h3>Annonser</h3>
+                        <p>Jag gör annonser på Facebook och Instagram och kollar hur bra de går.</p>
                     </li>
                     <li class="kort" data-reveal style="--delay:0.2s">
                         <span class="kort__nr">03</span>
-                        <h3>Målgrupp och kommunikation</h3>
-                        <p>Jag ställer frågorna först. Bakom varje inlägg som fungerar finns någon som förstod vem det var till för.</p>
+                        <h3>Målgrupp</h3>
+                        <p>Jag tar reda på vem ni vill nå och vad de bryr sig om.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="utbildning" tabindex="-1">
+            <div class="wrap">
+                <span class="etikett">Utbildning</span>
+                <h2 class="sektionstopp">
+                    <span class="rad"><span style="--i:0">Det här lär jag</span></span>
+                    <span class="rad"><span style="--i:1">mig på <em>IHM</em>.</span></span>
+                </h2>
+                <p class="ingress" data-reveal>Digital Marketing Specialist på IHM Business School, 2026 till 2028. Här är alla kurser och vad de handlar om.</p>
+                <p class="statusforklaring" data-reveal>
+                    <span class="par"><span class="status status--klar">Klar</span> kursen är gjord</span>
+                    <span class="par"><span class="status status--pagar">Pågår</span> jag läser den nu</span>
+                    <span class="par"><span class="status status--kommer">Kommer</span> kommer senare</span>
+                </p>
+                <ul class="rutnat">
+                    <li class="kort kurser" data-reveal>
+                        <h3>Grunden</h3>
+                        <ul class="kurslista">
+                            <li>
+                                <span class="status status--klar">Klar</span>
+                                <strong>Marknadsföring</strong>
+                                <span class="kurs__text">Hur man når rätt kunder med rätt budskap.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Digital strategi och kampanjhantering</strong>
+                                <span class="kurs__text">Hur man planerar en kampanj från idé till resultat.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Budgetering för digitala marknadsförare</strong>
+                                <span class="kurs__text">Hur man räknar på vad marknadsföring kostar och ger tillbaka.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Juridik för digitala marknadsförare</strong>
+                                <span class="kurs__text">Vilka regler som gäller, till exempel GDPR och cookies.</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="kort kurser" data-reveal style="--delay:0.08s">
+                        <h3>Synas</h3>
+                        <ul class="kurslista">
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Sökmotoroptimering</strong>
+                                <span class="kurs__text">Hur man hamnar högt upp på Google utan att betala.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Paid Media: Social och SEM</strong>
+                                <span class="kurs__text">Hur man gör annonser på sociala medier och Google.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Programmatic advertising</strong>
+                                <span class="kurs__text">Hur annonser köps automatiskt på många sajter samtidigt.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Content och Influencer Marketing</strong>
+                                <span class="kurs__text">Hur man skapar innehåll och jobbar med influencers.</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="kort kurser" data-reveal style="--delay:0.16s">
+                        <h3>Mäta och automatisera</h3>
+                        <ul class="kurslista">
+                            <li>
+                                <span class="status status--pagar">Pågår</span>
+                                <strong>AI och tech för digitala marknadsförare</strong>
+                                <span class="kurs__text">Hur AI, spårning, cookies och verktyg som Tag Manager hänger ihop.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Tracking och digital analys</strong>
+                                <span class="kurs__text">Hur man mäter vad besökare gör och förstår siffrorna.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Inbound marketing och marketing automation</strong>
+                                <span class="kurs__text">Hur kunder hittar en själv, och hur mejl och uppföljning sköts automatiskt.</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="kort kurser" data-reveal style="--delay:0.24s">
+                        <h3>Jobba och presentera</h3>
+                        <ul class="kurslista">
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Pitch, storytelling och presentation</strong>
+                                <span class="kurs__text">Hur man berättar så att folk lyssnar.</span>
+                            </li>
+                            <li>
+                                <span class="status status--pagar">Pågår</span>
+                                <strong>Karriärplanering</strong>
+                                <span class="kurs__text">Hur man planerar sin karriär och söker jobb.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Lärande i arbete 1 och 2</strong>
+                                <span class="kurs__text">Två perioder av praktik (LIA) på riktiga företag.</span>
+                            </li>
+                            <li>
+                                <span class="status status--kommer">Kommer</span>
+                                <strong>Examensarbete</strong>
+                                <span class="kurs__text">Ett eget slutprojekt där allt kommer ihop.</span>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -158,7 +285,7 @@
                     </div>
                     <div class="projekt__text">
                         <h3>Min personliga webbplats</h3>
-                        <p>Sidan du läser just nu. Ett pågående kursprojekt där jag bygger mitt eget varumärke med HTML, CSS och JavaScript. Fler projekt kommer under året.</p>
+                        <p>Den här hemsidan. Jag bygger den under utbildningen och lägger till mer hela tiden.</p>
                         <ul class="taggar" aria-label="Verktyg">
                             <li>HTML</li>
                             <li>CSS</li>
@@ -174,24 +301,28 @@
             <div class="wrap">
                 <span class="etikett">Kontakt</span>
                 <h2 class="sektionstopp">
-                    <span class="rad"><span style="--i:0">Låt oss prata</span></span>
-                    <span class="rad"><span style="--i:1"><em>LIA</em>.</span></span>
+                    <span class="rad"><span style="--i:0">Har du en</span></span>
+                    <span class="rad"><span style="--i:1"><em>LIA plats</em>?</span></span>
                 </h2>
-                <p data-reveal>Har du en LIA plats våren 2027? Fyll i formuläret så hör jag av mig inom ett dygn.</p>
+                <p data-reveal>Fyll i formuläret. Jag svarar inom ett dygn.</p>
 
                 <!-- Kontaktformulär: svaren skickas till HubSpot via deras API (se script.js, del 4) -->
                 <form id="kontaktform" class="formular" data-reveal style="--delay:0.1s" novalidate>
+                    <p class="forklaring">Fält med <span class="stjarna" aria-hidden="true">*</span> måste fyllas i.</p>
                     <div class="falt">
-                        <label for="namn">Namn</label>
-                        <input id="namn" name="firstname" type="text" autocomplete="name" required>
+                        <label for="namn">Namn <span class="stjarna" aria-hidden="true">*</span></label>
+                        <input id="namn" name="firstname" type="text" autocomplete="name" required aria-describedby="namn-fel">
+                        <p class="faltfel" id="namn-fel">Skriv ditt namn.</p>
                     </div>
                     <div class="falt">
-                        <label for="mejl">Mejladress</label>
-                        <input id="mejl" name="email" type="email" autocomplete="email" required>
+                        <label for="mejl">Mejladress <span class="stjarna" aria-hidden="true">*</span></label>
+                        <input id="mejl" name="email" type="email" autocomplete="email" required aria-describedby="mejl-fel" placeholder="namn@foretag.se">
+                        <p class="faltfel" id="mejl-fel">Skriv en mejladress, till exempel namn@foretag.se.</p>
                     </div>
                     <div class="falt">
-                        <label for="foretag">Företag</label>
-                        <input id="foretag" name="company" type="text" autocomplete="organization" required>
+                        <label for="foretag">Företag <span class="stjarna" aria-hidden="true">*</span></label>
+                        <input id="foretag" name="company" type="text" autocomplete="organization" required aria-describedby="foretag-fel">
+                        <p class="faltfel" id="foretag-fel">Skriv vilket företag du jobbar på.</p>
                     </div>
                     <div class="falt">
                         <label for="meddelande">Meddelande <span class="valfritt">(valfritt)</span></label>
@@ -205,17 +336,18 @@
                     </div>
 
                     <p class="integritet">
-                        <strong>Så behandlar jag dina personuppgifter.</strong>
-                        Jason Askar är personuppgiftsansvarig för de uppgifter du lämnar i formuläret. Jag behandlar ditt namn, företag, din mejladress och ditt meddelande för att kunna besvara din förfrågan. Den rättsliga grunden är mitt berättigade intresse av att svara dig. Uppgifterna lagras i CRM systemet HubSpot och raderas senast 12 månader efter vår senaste kontakt. Du har rätt att begära tillgång till, rättelse av eller radering av dina uppgifter genom att mejla <a href="mailto:contact@jason-askar.com">contact@jason-askar.com</a>. Du har även rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY).
+                        <strong>Så används dina uppgifter.</strong>
+                        Jag sparar det du skriver i HubSpot för att kunna svara dig. Jag raderar det senast 12 månader efter att vi hördes senast. Vill du se, ändra eller ta bort dina uppgifter? Mejla <a href="mailto:kontakt@jason-askar.com">kontakt@jason-askar.com</a>. Du kan också klaga hos Integritetsskyddsmyndigheten (IMY).
+                        <span class="smatt">Personuppgiftsansvarig: Jason Askar. Rättslig grund: berättigat intresse.</span>
                     </p>
 
-                    <button class="knapp" type="submit">Skicka <span class="pil" aria-hidden="true">→</span></button>
+                    <button class="knapp" type="submit">Skicka meddelande <span class="pil" aria-hidden="true">→</span></button>
                     <p class="formstatus" id="formstatus" role="status" aria-live="polite"></p>
                 </form>
 
-                <p class="direkt" data-reveal>Hellre direkt?</p>
+                <p class="direkt" data-reveal>Vill du hellre mejla eller skriva på LinkedIn?</p>
                 <div class="knappar" data-reveal>
-                    <a class="knapp knapp--kontur" href="mailto:contact@jason-askar.com">Mejl <span class="pil" aria-hidden="true">→</span></a>
+                    <a class="knapp knapp--kontur" href="mailto:kontakt@jason-askar.com">Mejla mig <span class="pil" aria-hidden="true">→</span></a>
                     <a class="knapp knapp--kontur" href="https://www.linkedin.com/in/jason-askar/" target="_blank" rel="noopener">LinkedIn <span class="pil" aria-hidden="true">↗</span></a>
                 </div>
             </div>
