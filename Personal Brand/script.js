@@ -21,6 +21,38 @@ temaknapp.addEventListener("click", bytTema);
 
 
 /* =========================================================
+   1b · Mobilmenyn
+   ========================================================= */
+
+const meny = document.querySelector(".meny");
+const menyknapp = document.querySelector(".menyknapp");
+
+// Öppna eller stäng menyn och berätta för skärmläsare om den är öppen
+function vaxlaMeny() {
+    meny.classList.toggle("oppen");
+
+    if (meny.classList.contains("oppen")) {
+        menyknapp.setAttribute("aria-expanded", "true");
+        menyknapp.textContent = "Stäng";
+    } else {
+        menyknapp.setAttribute("aria-expanded", "false");
+        menyknapp.textContent = "Meny";
+    }
+}
+
+menyknapp.addEventListener("click", vaxlaMeny);
+
+// Stäng menyn när man har valt något i den
+meny.querySelectorAll("a").forEach(function (lank) {
+    lank.addEventListener("click", function () {
+        if (meny.classList.contains("oppen")) {
+            vaxlaMeny();
+        }
+    });
+});
+
+
+/* =========================================================
    2 · Färgsvepet – övergången mellan sektionerna
    ========================================================= */
 
@@ -258,4 +290,19 @@ document.querySelectorAll('a[href*="linkedin.com"]').forEach(function (lank) {
     lank.addEventListener("click", function () {
         berattaForGTM("linkedin_klick");
     });
+});
+
+
+/* =========================================================
+   6 · Cookie-inställningar
+   =========================================================
+   Knappen i sidfoten öppnar Cookiebots ruta igen, så att
+   besökaren kan ändra sitt val när som helst (krav i GDPR). */
+
+const cookieknapp = document.querySelector("#cookieknapp");
+
+cookieknapp.addEventListener("click", function () {
+    if (window.Cookiebot) {
+        Cookiebot.renew();
+    }
 });

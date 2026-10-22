@@ -56,6 +56,9 @@
             <p class="roll">Digital Marketing Specialist</p>
         </div>
         <nav class="meny" aria-label="Huvudmeny">
+            <!-- Menyknappen syns bara på mobil -->
+            <button class="menyknapp" type="button" aria-expanded="false" aria-controls="menylista">Meny</button>
+            <div class="menylista" id="menylista">
             <ul>
                 <li><a href="#om">Om mig</a></li>
                 <li><a href="#tjanster">Vad jag kan</a></li>
@@ -64,6 +67,7 @@
                 <li><a href="#kontakt">Kontakt</a></li>
             </ul>
             <button id="tema" type="button" hidden>Mörkt läge</button>
+            </div>
         </nav>
     </header>
 
@@ -357,6 +361,11 @@
     <footer class="sidfot">
         <div class="wrap">
             <p>© 2026 Jason Askar</p>
+            <ul class="sidfot__lankar">
+                <li><a href="mailto:kontakt@jason-askar.com">kontakt@jason-askar.com</a></li>
+                <li><a href="https://www.linkedin.com/in/jason-askar/" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><button class="cookieknapp" id="cookieknapp" type="button">Cookie-inställningar</button></li>
+            </ul>
         </div>
     </footer>
 </body>

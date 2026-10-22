@@ -254,7 +254,9 @@ p {
 /* 4 · Sidhuvud och meny --------------------------------- */
 .sidhuvud {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
     gap: var(--space);
     padding: var(--space) var(--gutter);
     border-bottom: 1px solid var(--line);
@@ -274,17 +276,40 @@ p {
 }
 
 .meny {
+    display: contents; /* på mobil lägger sig knappen bredvid namnet */
+}
+
+/* Menyknappen (bara mobil) */
+.menyknapp {
+    padding: 0.55rem 1.1rem;
+    border: 1.5px solid var(--text);
+    border-radius: 999px;
+    background: var(--text);
+    color: var(--bg);
+    font: inherit;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Själva menyn: dold på mobil tills man trycker på Meny */
+.menylista {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 0.5rem 0 0.75rem;
+}
+
+.meny.oppen .menylista {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space);
 }
 
 .meny ul {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
+    flex-direction: column;
+    gap: 1rem;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -292,7 +317,7 @@ p {
 
 .meny a {
     position: relative;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
     font-weight: 500;
     text-decoration: none;
 }
@@ -909,6 +934,31 @@ a:hover .pil {
     text-decoration: none;
 }
 
+.sidfot__lankar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidfot__lankar a,
+.cookieknapp {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Cookie-knappen ska se ut som de andra länkarna i sidfoten */
+.cookieknapp {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
 .sidfot a:hover {
     color: var(--dark-soft);
 }
@@ -994,11 +1044,29 @@ a:hover .pil {
     }
 
     .meny {
+        display: block;
+    }
+
+    .menyknapp {
+        display: none;
+    }
+
+    .menylista {
+        display: flex;
+        flex-direction: row;
+        flex-basis: auto;
+        align-items: center;
         gap: 2rem;
+        padding: 0;
     }
 
     .meny ul {
+        flex-direction: row;
         gap: 2rem;
+    }
+
+    .meny a {
+        font-size: 0.95rem;
     }
 
     .intro__under {
